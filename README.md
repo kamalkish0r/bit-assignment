@@ -46,3 +46,7 @@ Run unit tests using the command:
 
 ```bash
 python manage.py test
+```
+
+## Documentation
+[API Documentation](api-documentation.md): Detailed documentation for using the API, including endpoints, authentication methods, error handling, and usage instructions.
