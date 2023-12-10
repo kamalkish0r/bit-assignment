@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TaskListCreateView, TaskDetailView
+from .views import TaskListCreateView, TaskDetailView, CustomAuthTokenLogin, UserCreate
 
 urlpatterns = [
     path('tasks/', TaskListCreateView.as_view(), name='task-list-create'),
