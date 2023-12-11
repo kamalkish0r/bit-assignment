@@ -15,9 +15,11 @@ This Django-based RESTful API enables CRUD operations for task management. Users
 To run this project locally, follow these steps:
 
 1. Clone the repository: `git clone <repository-url>`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run migrations: `python manage.py migrate`
-4. Start the server: `python manage.py runserver`
+2. Create virtual environment : `python3 -m venv env`
+3. Activate virtual environment : `source env/bin/activate` (mac/linux)  | `source\Scripts\Activate.ps1` (windows)
+4. Install dependencies: `pip install -r requirements.txt`
+5. Run migrations: `python manage.py migrate`
+6. Start the server: `python manage.py runserver`
 
 ## Usage
 
