@@ -67,7 +67,9 @@ class TaskAPITestCase(APITestCase):
         response = self.client.put('/task_manager/tasks/999/', data, format='json')  # Non-existent task ID for update
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
+def verify(a):
+    return a == 1
 
-# class AccessSecretsTests(TestCase):
-#     def test_secret(self):
-#         self.assertEqual(config['SECRET_1'], 1)
+class AccessSecretsTests(TestCase):
+    def test_secret(self):
+        self.assertTrue(verify(config['SECRET_1']))
