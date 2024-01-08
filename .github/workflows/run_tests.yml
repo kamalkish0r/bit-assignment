@@ -33,6 +33,8 @@ jobs:
           echo "    'SECRET_KEY': '$SECRET_KEY'," >> tast_manager_project/tast_manager_project/config.py
           echo "    'SECRET_1': '$SECRET_1'" >> tast_manager_project/tast_manager_project/config.py
           echo "}" >> tast_manager_project/tast_manager_project/config.py
+          echo "DEBUG: Printing environment variables..."
+          echo "SECRET_1=$SECRET_1"  
 
       - name: Run tests
         run: |
