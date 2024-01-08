@@ -1,14 +1,18 @@
 name: Django Test Workflow
 
-on:
+on: 
   pull_request:
     branches:
       - main
 
+
 jobs:
   test-run:
     runs-on: ubuntu-20.04
-
+    defaults:
+      run:
+        working-directory: .
+    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -20,10 +24,9 @@ jobs:
       
       - name: Install dependencies
         run: |
-          cd tast_manager_project
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
+      
       - name: Setup environment variables
         run: |
           echo "config = {" > tast_manager_project/tast_manager_project/config.py
@@ -32,7 +35,7 @@ jobs:
           echo "}" >> tast_manager_project/tast_manager_project/config.py
           cat tast_manager_project/tast_manager_project/config.py  # Output config.py for verification
 
-      - name: Run Django tests
+      - name: Run tests
         run: |
           cd tast_manager_app
           python manage.py test
