@@ -1,7 +1,10 @@
 from rest_framework.test import APITestCase
+from django.test import TestCase
 from rest_framework import status
 from django.contrib.auth.models import User
 from .models import Task
+
+from tast_manager_project.config import config
 
 class TaskAPITestCase(APITestCase):
     def setUp(self):
@@ -63,3 +66,8 @@ class TaskAPITestCase(APITestCase):
         data = {'title': 'Updated Task'}
         response = self.client.put('/task_manager/tasks/999/', data, format='json')  # Non-existent task ID for update
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class AccessSecretsTests(TestCase):
+    def test_secret(self):
+        self.assertEqual(config['SECRET_1'], 1)

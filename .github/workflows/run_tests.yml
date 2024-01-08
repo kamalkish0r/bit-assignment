@@ -1,0 +1,39 @@
+name: Django Test Workflow
+
+on: 
+  pull_request:
+    branches:
+      -main
+
+
+jobs:
+  test-run:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: .
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Setup environment variables
+        run: |
+          echo "config = {" > tast_manager_project/tast_manager_project/config.py
+          echo "    'SECRET_KEY': '$SECRET_KEY'," >> tast_manager_project/tast_manager_project/config.py
+          echo "    'SECRET_1': '$SECRET_1'" >> tast_manager_project/tast_manager_project/config.py
+          echo "}" >> tast_manager_project/tast_manager_project/config.py
+
+      - name: Run tests
+        run: |
+          python tast_manager_app.manage.py test
