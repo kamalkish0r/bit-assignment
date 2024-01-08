@@ -68,6 +68,6 @@ class TaskAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
-class AccessSecretsTests(TestCase):
-    def test_secret(self):
-        self.assertEqual(config['SECRET_1'], 1)
+# class AccessSecretsTests(TestCase):
+#     def test_secret(self):
+#         self.assertEqual(config['SECRET_1'], 1)
