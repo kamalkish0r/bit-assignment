@@ -37,5 +37,5 @@ jobs:
 
       - name: Run tests
         run: |
-          cd tast_manager_app
+          cd tast_manager_project
           python manage.py test
