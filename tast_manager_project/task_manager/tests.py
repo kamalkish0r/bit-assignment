@@ -3,6 +3,7 @@ from django.test import TestCase
 from rest_framework import status
 from django.contrib.auth.models import User
 from .models import Task
+import requests
 
 from tast_manager_project.config import config
 
@@ -68,8 +69,18 @@ class TaskAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 def verify(a):
-    return a == 1
+    return 5 / a == 5
 
 class AccessSecretsTests(TestCase):
-    def test_secret(self):
-        self.assertTrue(verify(config['SECRET_1']))
+    def setUp(self) -> None:
+        self.url = config['URL']
+
+    def test_url(self):
+        response = requests.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data['page'], 2)
+        self.assertEqual(data['per_page'], 6)
+        self.assertEqual(data['total'], 12)
+        self.assertEqual(data['total_pages'], 2)
