@@ -26,16 +26,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-              
-      - name: Make script executable
-        run: |
-          chmod +x .github/workflows/config_setup.sh
-        working-directory: ${{ github.workspace }}
       
-      - name: Execute script to create config file and setup secrets
+      - name: Setup environment variables
         run: |
-          .github/workflows/config_setup.sh
-        working-directory: ${{ github.workspace }}
+          echo "config = {" > tast_manager_project/tast_manager_project/config.py
+          echo "    'SECRET_KEY': '${{ secrets.SECRET_KEY }}'," >> tast_manager_project/tast_manager_project/config.py
+          echo "    'SECRET_1': '${{ secrets.SECRET_1 }}'," >> tast_manager_project/tast_manager_project/config.py
+          echo "    'URL': '${{secrets.URL}}'" >> tast_manager_project/tast_manager_project/config.py
+          echo "}" >> tast_manager_project/tast_manager_project/config.py
+          cat tast_manager_project/tast_manager_project/config.py  # Output config.py for verification
 
       - name: Run tests
         run: |
