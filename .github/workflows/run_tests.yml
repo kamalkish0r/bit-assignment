@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements.txt
       
       - name: List Directory Contents
-        run: ls -R
+        run: ls -aR
         working-directory: ${{ github.workspace }}
         
       - name: Make script executable
