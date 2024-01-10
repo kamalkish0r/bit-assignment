@@ -26,20 +26,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
-      - name: List Directory Contents
-        run: ls -aR
-        working-directory: ${{ github.workspace }}
-        
+              
       - name: Make script executable
         run: |
-          chmod +x config_setup.sh
+          chmod +x .github/workflows/config_setup.sh
         working-directory: ${{ github.workspace }}
       
       - name: Execute script to create config file and setup secrets
         run: |
-          pwd
-          ./config_setup.sh
+          .github/workflows/config_setup.sh
         working-directory: ${{ github.workspace }}
 
       - name: Run tests
